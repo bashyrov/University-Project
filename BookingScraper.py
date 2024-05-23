@@ -4,11 +4,6 @@ from operator import attrgetter
 from datetime import date, timedelta
 
 
-def validation(scrapeItem):
-    if scrapeItem:
-        pass
-    else:
-        scrapeItem = "Brak danych"
 
 
 def get_checkin_date():     # Funkcja do pobrania daty zameldowania
@@ -99,13 +94,13 @@ def choose_city(adulsGroup, childrenGroup, checkinDate, checkoutDate, childrenGr
             print("Proszę spróbować ponownie.\n")
 
 
-# Klasa do przechowywania informacji o hotelu
+# Parsing funkcja
 def scrape_hotels(target_url):
     response = requests.get(target_url, headers=headers)  # Wysyłamy żądanie do URL
 
     soup = BeautifulSoup(response.text, 'html.parser')  # Parsujemy otrzymaną stronę HTML
     if response.status_code == 200:  # Sprawdzamy, czy odpowiedź była pomyślna
-        class Hotel:
+        class Hotel: # Klasa do przechowywania informacji o hotelu
             def __init__(self, name, address, rating, room, description, price):
                 self.name = name
                 self.address = address
